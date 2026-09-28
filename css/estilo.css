@@ -432,7 +432,7 @@ address { font-style: normal; }
 }
 .rodape a { color: inherit; }
 .rodape :focus-visible { outline-color: var(--rodape-texto); }
-.rodape__grade { display: grid; gap: 1.5rem; max-width: var(--largura); margin: 0 auto; }
+.rodape__grade { display: grid; gap: 1.5rem; max-width: calc(var(--largura) - 2 * var(--margem)); margin: 0 auto; }
 .rodape__grade p { margin: 0 0 0.25rem; }
 .rodape__nome { font-family: var(--serifa); font-size: 1.3125rem; }
 .rodape__telefone a { display: inline-flex; align-items: center; min-height: 2.75rem; }
@@ -448,7 +448,7 @@ address { font-style: normal; }
 .redes a:hover { background: rgb(255 255 255 / 0.12); color: #fff; }
 .redes svg { width: 1.5rem; height: 1.5rem; }
 .rodape__aviso {
-  max-width: var(--largura);
+  max-width: calc(var(--largura) - 2 * var(--margem));
   margin: 2rem auto 0;
   padding-top: 1.5rem;
   border-top: 1px solid rgb(255 255 255 / 0.2);
