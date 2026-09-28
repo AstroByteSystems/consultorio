@@ -1,0 +1,585 @@
+/* ==========================================================================
+   Jéssica Nogueira Schinzari — Psicóloga
+   Mobile first: tudo abaixo vale para o celular; os ajustes para telas
+   maiores estão no fim, em @media (min-width: 60em).
+   ========================================================================== */
+
+@font-face {
+  font-family: "Newsreader";
+  src: url("../assets/fonts/newsreader.woff2") format("woff2");
+  font-weight: 400 560;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Figtree";
+  src: url("../assets/fonts/figtree.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Paleta "Esmalte" sobre bege */
+  --fundo: #F5EFE6;          /* Bege claro — fundo da página */
+  --fundo-alt: #EBE1D3;      /* Bege um tom abaixo — seções alternadas */
+  --tinta: #1E1F1A;          /* Tinta: calça escura — texto principal */
+  --suave: #655E42;          /* Mel: relógio dourado — legendas e detalhes */
+  --acao: #9C2F36;           /* Esmalte: unhas — botões e links */
+  --acao-forte: #7E242A;
+  --sobre-acao: #FFFFFF;
+  --linha: #DCCFBD;
+  --rodape: #5B4E3F;         /* Bege escuro — rodapé */
+  --rodape-texto: #F5EFE6;
+  --mapa-filtro: grayscale(1) sepia(0.3) brightness(1.02) contrast(0.9);
+}
+
+:root {
+  --serifa: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Escala tipográfica — celular (razão 1,25) */
+  --t-peq: 0.9375rem;   /* 15px */
+  --t-corpo: 1.0625rem; /* 17px */
+  --t-h3: 1.3125rem;    /* 21px */
+  --t-h2: 1.6875rem;    /* 27px */
+  --t-h1: 2.125rem;     /* 34px */
+
+  --margem: 1.25rem;
+  --espaco-secao: 4.5rem;
+  --leitura: 34em;
+  --largura: 72rem;
+  --barra: 3.5rem;
+}
+
+/* ---------- Base --------------------------------------------------------- */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: 1rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--tinta);
+  font-family: var(--sans);
+  font-size: var(--t-corpo);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--serifa);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.6em;
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--t-h1); font-weight: 450; }
+h2 { font-size: var(--t-h2); }
+h3 { font-size: var(--t-h3); }
+h4 { font-size: 1.1875rem; }
+
+p { margin: 0 0 1em; text-wrap: pretty; }
+
+img { display: block; max-width: 100%; height: auto; }
+
+a { color: var(--acao); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+a:hover { color: var(--acao-forte); text-decoration-thickness: 2px; }
+
+address { font-style: normal; }
+
+:focus-visible {
+  outline: 3px solid var(--tinta);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.pular {
+  position: absolute;
+  left: var(--margem);
+  top: -4rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--tinta);
+  color: var(--fundo);
+}
+.pular:focus { top: 0.5rem; }
+
+.icone { width: 1.25em; height: 1.25em; flex: none; }
+
+.coluna { max-width: var(--leitura); }
+
+.link { color: var(--acao); }
+
+/* ---------- Botões ------------------------------------------------------- */
+
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  min-height: 3.25rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--acao);
+  border-radius: 999px;
+  background: var(--acao);
+  color: var(--sobre-acao);
+  font: 600 1.0625rem/1.2 var(--sans);
+  text-decoration: none;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+.botao:hover {
+  background: var(--acao-forte);
+  border-color: var(--acao-forte);
+  color: var(--sobre-acao);
+}
+
+.botao--pequeno { min-height: 2.75rem; padding: 0.5rem 1.1rem; font-size: 1rem; }
+
+.botao--contorno { background: transparent; color: var(--acao); }
+.botao--contorno:hover { background: var(--acao); color: var(--sobre-acao); }
+
+.link-whats {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  min-height: 2.75rem;
+  font-weight: 600;
+  color: var(--acao);
+}
+
+/* ---------- Topo --------------------------------------------------------- */
+
+.topo__dentro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 1.25rem var(--margem) 0.5rem;
+}
+
+.assinatura { margin: 0; line-height: 1.3; }
+.assinatura__nome { display: block; font-family: var(--serifa); font-size: 1.1875rem; font-weight: 500; }
+.assinatura__crp { display: block; font-size: var(--t-peq); color: var(--suave); }
+
+.topo__nav,
+.topo__cta { display: none; }
+
+/* ---------- Abertura ----------------------------------------------------- */
+
+.hero {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 0 var(--margem) var(--espaco-secao);
+}
+
+.hero__foto {
+  width: 82%;
+  margin: 0 calc(var(--margem) * -1) 0 auto;
+  overflow: hidden;
+}
+
+.hero__foto img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: 52% 0%;
+  /* o fundo branco do estúdio assume a cor de fundo da página */
+  mix-blend-mode: multiply;
+  /* no celular a foto é cortada na altura da cintura: a borda de baixo
+     se dissolve no fundo em vez de terminar num corte seco */
+  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 98%);
+  mask-image: linear-gradient(to bottom, #000 72%, transparent 98%);
+}
+
+.hero__texto { margin-top: -1.5rem; position: relative; }
+
+.hero h1 { max-width: 13em; margin-bottom: 0.5em; }
+
+.hero__apoio { max-width: 30em; }
+
+.hero__cta { width: 100%; margin: 0.5rem 0 1rem; }
+
+.hero__local { font-size: var(--t-peq); color: var(--suave); margin: 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .hero__foto img { animation: revela 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .js .hero__texto { animation: aparece 0.8s ease-out 0.35s both; }
+}
+
+@keyframes revela {
+  from { clip-path: inset(100% 0 0 0); transform: translateY(1.5rem); }
+  to   { clip-path: inset(0 0 0 0); transform: none; }
+}
+
+@keyframes aparece {
+  from { opacity: 0; transform: translateY(0.5rem); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---------- Seções ------------------------------------------------------- */
+
+.secao {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: var(--espaco-secao) var(--margem);
+}
+
+.secao--alt {
+  max-width: none;
+  background: var(--fundo-alt);
+  padding-inline: max(var(--margem), (100% - var(--largura)) / 2 + var(--margem));
+}
+
+/* Com o que eu trabalho */
+.temas { padding-top: 0; }
+.temas__cabeca p { color: var(--suave); max-width: 28em; }
+
+.tema {
+  max-width: var(--leitura);
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+  border-top: 1px solid var(--linha);
+}
+.tema h3 { font-size: 1.625rem; margin-bottom: 0.5em; }
+.tema p:last-child { margin-bottom: 0; }
+
+/* Sobre */
+.sobre p:first-of-type { font-family: var(--serifa); font-size: 1.3125rem; line-height: 1.45; }
+.sobre p:last-of-type { margin-bottom: 0; }
+
+/* Como funciona */
+.como__tcc { margin-bottom: 0; }
+.como__subtitulo { margin-top: 3rem; }
+
+.passos {
+  list-style: none;
+  counter-reset: passo;
+  margin: 0;
+  padding: 0;
+}
+.passo {
+  counter-increment: passo;
+  position: relative;
+  padding: 0 0 1.75rem 3rem;
+  max-width: var(--leitura);
+}
+.passo::before {
+  content: counter(passo);
+  position: absolute;
+  left: 0;
+  top: -0.2rem;
+  font: 450 2rem/1 var(--serifa);
+  color: var(--acao);
+}
+.passo h4 { margin-bottom: 0.3em; }
+.passo p { margin: 0; }
+
+.modalidades { margin-top: 1.5rem; }
+.modalidade {
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--linha);
+  max-width: var(--leitura);
+}
+.modalidade p { margin-bottom: 0.5rem; }
+
+/* Avaliações */
+.avaliacoes__resumo { font-size: 1.1875rem; }
+.avaliacoes__lista { display: grid; gap: 2rem; margin: 2rem 0; }
+.avaliacao {
+  margin: 0;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--acao);
+  max-width: var(--leitura);
+}
+.avaliacao blockquote { margin: 0 0 0.75rem; font-family: var(--serifa); font-size: 1.1875rem; line-height: 1.5; }
+.avaliacao figcaption { font-size: var(--t-peq); color: var(--suave); }
+.avaliacao__nota { color: var(--tinta); letter-spacing: 0.1em; }
+
+/* Sem avaliações publicadas, "Como funciona" e "O consultório" ficam
+   coladas no mesmo fundo: evita somar dois espaçamentos. */
+.avaliacoes[hidden] + .consultorio { padding-top: 0; }
+
+/* Galeria */
+.galeria {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem calc(var(--margem) * -1) 0;
+  padding: 0 var(--margem) 1rem;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--margem);
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--linha) transparent;
+}
+.galeria__item { flex: none; scroll-snap-align: start; }
+.galeria figure { margin: 0; width: min-content; }
+.galeria img {
+  height: clamp(20rem, 62vh, 30rem);
+  width: auto;
+  max-width: 85vw;
+  object-fit: cover;
+  background: var(--fundo-alt);
+}
+.galeria__item[data-foto="fachada"] img { object-position: 22% 70%; }
+.galeria figcaption {
+  margin-top: 0.6rem;
+  font-size: var(--t-peq);
+  line-height: 1.45;
+  color: var(--suave);
+}
+
+/* Como chegar */
+.local address { font-size: 1.1875rem; line-height: 1.5; margin-bottom: 1.5rem; }
+.local__botoes { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
+.local__botoes .botao { flex: 1 1 12rem; }
+
+.mapa {
+  position: relative;
+  height: 22rem;
+  background: var(--fundo);
+  border: 1px solid var(--linha);
+  z-index: 0;
+}
+.mapa__carregando {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  color: var(--suave);
+  font-size: var(--t-peq);
+}
+.mapa .leaflet-tile-pane { filter: var(--mapa-filtro); }
+.mapa .leaflet-container,
+.mapa.leaflet-container { font-family: var(--sans); background: var(--fundo); }
+.mapa .leaflet-control-attribution { font-size: 0.75rem; }
+.mapa .leaflet-control-zoom a { width: 2.75rem; height: 2.75rem; line-height: 2.75rem; color: var(--tinta); }
+.mapa__aviso {
+  position: absolute;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgb(0 0 0 / 0.45);
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+.mapa__aviso.visivel { opacity: 1; }
+.pino { color: var(--acao); }
+.pino svg { display: block; filter: drop-shadow(0 2px 2px rgb(0 0 0 / 0.25)); }
+
+/* Perguntas */
+.perguntas details { border-top: 1px solid var(--linha); }
+.perguntas details:last-of-type { border-bottom: 1px solid var(--linha); }
+.perguntas summary {
+  position: relative;
+  display: block;
+  min-height: 2.75rem;
+  padding: 1.1rem 2.5rem 1.1rem 0;
+  font-family: var(--serifa);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.3;
+  cursor: pointer;
+  list-style: none;
+}
+.perguntas summary::-webkit-details-marker { display: none; }
+.perguntas summary::after {
+  content: "";
+  position: absolute;
+  right: 0.35rem;
+  top: 1.45rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-right: 2px solid var(--acao);
+  border-bottom: 2px solid var(--acao);
+  transform: rotate(45deg);
+}
+.perguntas details[open] summary::after { transform: rotate(-135deg); top: 1.7rem; }
+.perguntas details p { padding-bottom: 0.5rem; }
+
+/* ---------- Rodapé ------------------------------------------------------- */
+
+.rodape {
+  background: var(--rodape);
+  color: var(--rodape-texto);
+  font-size: var(--t-peq);
+  padding: 3rem var(--margem) calc(var(--barra) + env(safe-area-inset-bottom) + 2rem);
+}
+.rodape a { color: inherit; }
+.rodape :focus-visible { outline-color: var(--rodape-texto); }
+.rodape__grade { display: grid; gap: 1.5rem; max-width: var(--largura); margin: 0 auto; }
+.rodape__grade p { margin: 0 0 0.25rem; }
+.rodape__nome { font-family: var(--serifa); font-size: 1.3125rem; }
+.rodape__telefone a { display: inline-flex; align-items: center; min-height: 2.75rem; }
+.redes { display: flex; gap: 0.5rem; list-style: none; margin: 0 0 0 -0.625rem; padding: 0; }
+.redes a {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  transition: background-color 0.15s;
+}
+.redes a:hover { background: rgb(255 255 255 / 0.12); color: #fff; }
+.redes svg { width: 1.5rem; height: 1.5rem; }
+.rodape__aviso {
+  max-width: var(--largura);
+  margin: 2rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgb(255 255 255 / 0.2);
+}
+.rodape__aviso a { font-weight: 700; }
+
+/* ---------- Barra fixa do WhatsApp (celular) ----------------------------- */
+
+.barra-whats {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  min-height: calc(var(--barra) + env(safe-area-inset-bottom));
+  padding: 0 var(--margem) env(safe-area-inset-bottom);
+  background: var(--acao);
+  color: var(--sobre-acao);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  text-decoration: none;
+  transition: transform 0.25s ease;
+}
+.barra-whats:hover { color: var(--sobre-acao); background: var(--acao-forte); }
+.barra-whats:focus-visible { outline: 3px solid var(--sobre-acao); outline-offset: -6px; }
+.js .barra-whats:not(.visivel) { transform: translateY(110%); }
+
+@media (prefers-reduced-motion: reduce) {
+  .barra-whats { transition: none; }
+}
+
+/* ==========================================================================
+   Telas maiores
+   ========================================================================== */
+
+@media (min-width: 40em) {
+  :root { --margem: 2rem; }
+  .hero__cta { width: auto; }
+  .galeria img { max-width: 70vw; }
+}
+
+@media (min-width: 60em) {
+  :root {
+    --t-peq: 0.9375rem;
+    --t-corpo: 1.125rem;  /* 18px */
+    --t-h3: 1.5rem;       /* 24px */
+    --t-h2: 2.125rem;     /* 34px */
+    --t-h1: 3.125rem;     /* 50px */
+    --margem: 2.5rem;
+    --espaco-secao: 7.5rem;
+  }
+
+  html { scroll-padding-top: 5.5rem; }
+
+  .topo {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--fundo);
+    border-bottom: 1px solid var(--linha);
+  }
+  .topo__dentro { padding-block: 0.75rem; }
+  .topo__nav { display: flex; gap: 1.75rem; margin-left: auto; }
+  .topo__nav a { color: var(--tinta); text-decoration: none; font-size: 1rem; }
+  .topo__nav a:hover { color: var(--acao); text-decoration: underline; }
+  .topo__cta { display: inline-flex; }
+
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: end;
+    gap: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 6rem;
+  }
+  .hero__foto { order: 2; width: auto; margin: 0; }
+  .hero__foto img {
+    aspect-ratio: auto;
+    width: auto;
+    max-height: min(78vh, 40rem);
+    margin-left: auto;
+    -webkit-mask-image: linear-gradient(to bottom, #000 86%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 86%, transparent 100%);
+  }
+  .hero__texto { margin: 0 0 3rem; }
+
+  .temas {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 4rem;
+    align-items: start;
+  }
+  .temas__cabeca { position: sticky; top: 7rem; }
+  .tema:first-child { margin-top: 0; }
+
+  .passos {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.5rem;
+  }
+  .passo { padding: 3.25rem 0 0; }
+  .passo::before { top: 0; }
+
+  .modalidades {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 4rem;
+    margin-top: 3.5rem;
+  }
+
+  .avaliacoes__lista { grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); gap: 3rem; }
+
+  .galeria { margin-inline: 0; padding-inline: 0; scroll-padding-inline: 0; }
+  .galeria img { max-width: 44rem; }
+
+  .local__grade {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 4rem;
+    align-items: center;
+  }
+  .local__botoes { flex-direction: column; align-items: flex-start; }
+  .local__botoes .botao { flex: none; min-width: 16rem; }
+  .mapa { height: 30rem; }
+
+  .perguntas .coluna { margin-inline: auto; }
+
+  .rodape { padding-bottom: 3rem; }
+  .rodape__grade { grid-template-columns: 1.2fr 1fr 1fr; }
+
+  .barra-whats { display: none; }
+}

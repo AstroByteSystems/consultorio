@@ -1,0 +1,14 @@
+{
+  "name": "site-jessica-schinzari",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page — Jéssica Nogueira Schinzari, Psicóloga (CRP 06/106457)",
+  "scripts": {
+    "imagens": "node scripts/otimizar-imagens.js",
+    "publicar": "node scripts/preparar-publicacao.js",
+    "site": "npx --yes serve -l 8080 ."
+  },
+  "devDependencies": {
+    "sharp": "^0.34.0"
+  }
+}
